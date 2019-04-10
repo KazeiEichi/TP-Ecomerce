@@ -4,12 +4,17 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker;
 use App\Entity\Product;
+use App\Entity\Category;
 
-class AppFixtures extends Fixture
+
+class AppFixtures extends Fixture 
 {
     public function load(ObjectManager $manager)
     {   
+        $faker = Faker\Factory::create();
+
         for ($i = 0; $i < 20; $i++) {
             $product = new Product();
             $product->setName('product '.$i);
@@ -20,6 +25,17 @@ class AppFixtures extends Fixture
             $manager->persist($product);
         }
 
-        $manager->flush();
+            $manager->flush();
+
+        for ($i = 0; $i < 5; $i++)
+        {
+            $category = new Category();
+            $category->setName('Catégorie ' . $faker->title );
+            $manager->persist($category);
+        }
+        
+            $manager->flush();
     }
+
+
 }
