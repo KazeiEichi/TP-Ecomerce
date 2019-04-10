@@ -33,6 +33,7 @@ class AppFixtures extends Fixture
             $product->setDescription('<p>lorem</p>');
             $product->setImage('https://dummyimage.com/600x400/55595c/fff');
             $product->setCategory($j[rand(1, 5)]);
+            $product->setDate($faker->dateTime);
             $manager->persist($product);
         }
 

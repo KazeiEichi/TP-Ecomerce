@@ -41,6 +41,21 @@ class Product
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $favorite = 0;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $score = 6;
+
 
     public function getName(): ?string
     {
@@ -98,6 +113,42 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getFavorite(): ?int
+    {
+        return $this->favorite;
+    }
+
+    public function setFavorite(int $favorite): self
+    {
+        $this->favorite = $favorite;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }
