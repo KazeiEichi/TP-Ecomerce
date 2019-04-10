@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
@@ -18,18 +19,29 @@ class Message
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=10)
      */
     private $message;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     */
+    private $opened = 0;
 
     public function getId(): ?int
     {
@@ -70,5 +82,21 @@ class Message
         $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOpened()
+    {
+        return $this->opened;
+    }
+
+    /**
+     * @param mixed $opened
+     */
+    public function setOpened($opened): void
+    {
+        $this->opened = $opened;
     }
 }
