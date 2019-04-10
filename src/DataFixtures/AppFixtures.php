@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
         
             $manager->flush();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 120; $i++) {
             $product = new Product();
             $product->setName('product '.$i);
             $product->setPrice(mt_rand(10, 100));
