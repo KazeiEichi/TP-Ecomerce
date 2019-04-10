@@ -30,6 +30,10 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $read = 0;
 
     public function getId(): ?int
     {
@@ -70,5 +74,21 @@ class Message
         $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * @param mixed $read
+     */
+    public function setRead($read): void
+    {
+        $this->read = $read;
     }
 }
