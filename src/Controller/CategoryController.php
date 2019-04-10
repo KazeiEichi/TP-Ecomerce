@@ -10,22 +10,32 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
     /**
      * @Route("/category", name="category")
+     * @return Response 
      */
-    public function generateProduct(ProductRepository $repository, CategoryRepository $catrepo)
+    public function generateProduct(ProductRepository $repository, CategoryRepository $catrepo, PaginatorInterface $paginator, Request $request) : Response
     {   
-        $product = $repository->findAll();
+        $products = $repository->findAll();
+        $product = $paginator->paginate(
+           $products, 
+        $request->query->getInt('page', 1),
+        12 
+    );
+
+        
 
         $category = $catrepo->findAll();
 
         return $this->render('category/index.html.twig', [
             'controller_name' => 'CategoryController',
             'products' => $product,
-            'categorys' => $category    
+            'categorys' => $category ,
+            
         ]);
     }
 
