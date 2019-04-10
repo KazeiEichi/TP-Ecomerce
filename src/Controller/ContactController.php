@@ -23,6 +23,10 @@ class ContactController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $this->addFlash("success","Votre message a bien été envoyé.");
+            $manager = $this->getDoctrine()->getManager();
+
+            $manager->persist($message);
+            $manager->flush();
         }
         return $this->render('contact/index.html.twig', [
             'contact' => $form->createView()
