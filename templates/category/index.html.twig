@@ -18,10 +18,11 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{path('index')}}">Accueil</a></li>
                         <li class="breadcrumb-item"><a href="{{path('category')}}">Catégorie</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Modèles</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{currentcat}}</li>
                     </ol>
                 </nav>
             </div>
+
         </div>
     </div>
     <div class="container">
@@ -32,7 +33,7 @@
                     <ul class="list-group category_block">
 
                         {% for category in categorys %}
-                        <li class="list-group-item"><a href="category.html">{{category.name}}</a></li>
+                        <li class="list-group-item"><a href="{{path('category', {'id': category.id })}}">{{category.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -40,9 +41,9 @@
                     <div class="card-header bg-success text-white text-uppercase">Dernier produit</div>
                     <div class="card-body">
                         <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                        <h5 class="card-title">Produit</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p class="bloc_left_price">99.00 &euro;</p>
+                        <h5 class="card-title">{{lastproduct[0].name}}</h5>
+                        <p class="card-text">{{lastproduct[0].description}}</p>
+                        <p class="bloc_left_price">{{lastproduct[0].price}}</p>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
                             <div class="card-body">
-                                <h4 class="card-title"><a href="product.html" title="View Product">{{ product.name }}</a></h4>
+                                <h4 class="card-title"><a href="{{path('product', {'id': product.id })}}" title="View Product">{{ product.name }}</a></h4>
                                 <p class="card-text">{{product.description}}</p>
                                 <div class="row">
                                     <div class="col">

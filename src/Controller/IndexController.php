@@ -17,13 +17,15 @@ class IndexController extends AbstractController
         $products = $repository->findLast4Products();
         $bestproducts = $repository->findBestScore();
         $favproducts = $repository->findFavorite();
+        
                                 
 
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
             'products' => $products,
             'bestproducts' => $bestproducts,
-            'favproducts' => $favproducts [array_rand($favproducts)]
+            'favproducts' => $favproducts [array_rand($favproducts)],
+            
 
         ]);
     }
