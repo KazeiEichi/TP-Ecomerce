@@ -26,21 +26,17 @@ class CategoryController extends AbstractController
         $request->query->getInt('page', 1),
         12 
     );
-
-        
-
         $category = $catrepo->findAll();
 
         return $this->render('category/index.html.twig', [
             'controller_name' => 'CategoryController',
             'products' => $product,
             'categorys' => $category ,
-            
         ]);
     }
-
     /**
      * @Route("/product/{id}", name="product")
+     * 
      * @param Product $product
      * @return Response
      */
@@ -50,6 +46,8 @@ class CategoryController extends AbstractController
             'product' => $product
         ]);
     }
+
+  
 
     
 

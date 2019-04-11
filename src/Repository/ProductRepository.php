@@ -19,13 +19,51 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-     /**
-     * @return Query []
+    
+
+    /**
+     * @return Product[]
      */
-    public function findAllVisibleQuery(): Query
+    public function findLast4Products()
     {
-        return $this->findAllVisible()
+        $queryBuilder = $this->createQueryBuilder('p')
+            //->where('p.name LIKE :name')
+            //->setParameter('name', '%iphone%')
+            ->orderBy('p.date', 'DESC')
+            ->setMaxResults(4)
             ->getQuery();
+        return $queryBuilder->execute();
+    }
+
+    public function findBestScore()
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            //->where('p.name LIKE :name')
+            //->setParameter('name', '%iphone%')
+            ->orderBy('p.score', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery();
+        return $queryBuilder->execute();
+    }
+
+    public function findFavorite()
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->where('p.favorite = 1')
+            //->setParameter('name', '%iphone%')
+            ->getQuery();
+        return $queryBuilder->execute();
+    }
+
+    public function findLastProduct()
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+
+        ->orderBy('p.score', 'DESC')
+        ->setMaxResults(4)
+        ->getQuery();
+        
+        return $queryBuilder->execute();
     }
 
     // /**
