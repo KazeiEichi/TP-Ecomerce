@@ -17,6 +17,7 @@ class IndexController extends AbstractController
         $products = $repository->findLast4Products();
         $bestproducts = $repository->findBestScore();
         $favproducts = $repository->findFavorite();
+        
                                 
         if (!empty($favproducts)){
            $favproducts = $favproducts [array_rand($favproducts)];

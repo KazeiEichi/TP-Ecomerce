@@ -59,13 +59,22 @@ class ProductRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('p')
 
-        ->orderBy('p.score', 'DESC')
-        ->setMaxResults(4)
+        ->orderBy('p.date', 'DESC')
+        ->setMaxResults(1)
         ->getQuery();
-        
+
         return $queryBuilder->execute();
     }
 
+    public function findByCategory_id($category)
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->where('p.category = :category')
+            ->setParameter('category', $category)
+            ->getQuery();
+          return $queryBuilder->execute();
+  
+    }
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
