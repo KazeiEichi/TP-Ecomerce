@@ -81,13 +81,13 @@
                             </ul>
                         </div>
                         <div class="reviews_product p-3 mb-2 ">
-                            3 avis
+                            {{random(0, 5) ~ ' avis'}}
+
+                            {% for i in 1 .. product.score  %}
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            (4/5)
+                            {% endfor %}
+
+                            {{(product.score ~ '/5')}}
                             <a class="pull-right" href="#reviews">Voir tous les avis</a>
                         </div>
                         <div class="datasheet p-3 mb-2 bg-info text-white">
